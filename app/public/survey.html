@@ -175,11 +175,42 @@
           valid = false;
         };
       });
-      // if valid = false (any of the fields are empty), the code will stop here and won't continue to below code
+      
       return valid;
     };
 
-    // 
+    // if the return of validateForm() is true (all fields filled in), continue to storing user input, posting user data to api route, displaying match results returned from the functionality in that route 
+    if (validateForm()) {
+      var userData = {
+        name: $("#name").val(),
+        photo: $("#photo").val(),
+        scores: [
+          $("#question1").val(),
+          $("#question2").val(),
+          $("#question3").val(),
+          $("#question4").val(),
+          $("#question5").val(),
+          $("#question6").val(),
+          $("#question7").val(),
+          $("#question8").val(),
+          $("#question9").val(),
+          $("#question10").val()
+        ]
+      };
+    
+      // post data to friends api
+      $.post("/api/friends", userData, function(data) {
+        // get the info for the best friend match (from the functionality found in the friends api route) and display it
+        $("#matchDiv").append("<p>" + data.name + "</p>");
+        $("#matchDiv").append("<img src='" + data.photo + "'>");
+
+        // display the best match modal
+        $("#matchModal").modal("toggle");
+      });
+
+    } else {
+      alert("Please fill out all fields.");
+    };
 
   });
 </script>
