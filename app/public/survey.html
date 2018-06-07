@@ -160,7 +160,6 @@
 </body>
 
 
-<<<<<<< HEAD
 <script>
   // take in user inputs
   $("#submit").on("click", function(event) {
@@ -187,30 +186,3 @@
 
 
 </html>
-=======
-</html>
-
-<!-- data handling script -->
-<script type="text/javascript">
-
-  $(".submit").on("click", function(event) {
-    event.preventDefault();
-
-    // store user responses to survey
-    var userAnswers = [];
-    for (var i = 1; i < 11; i++) {
-      userAnswers.push($("question" + i).val().trim());
-    };
-
-    console.log(userAnswers);
-
-    // post user answers to friends.js
-    $.post("/api/friends", userAnswers, 
-      function(data) {
-        
-
-    });
-  });
-
-</script>
->>>>>>> 77493281e5513de59d31daff32fe2f27dfc6a099
